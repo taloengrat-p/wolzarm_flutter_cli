@@ -1,6 +1,7 @@
 name: wolzarm_flutter_cli
 description: A sample command-line application.
 version: 1.0.0
+homepage: https://github.com/taloengrat-p/wolzarm_flutter_cli
 # repository: https://github.com/my_org/my_repo
 
 environment:
