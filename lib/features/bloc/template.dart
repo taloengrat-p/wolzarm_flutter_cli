@@ -36,7 +36,6 @@ class %{name}PageState extends State<%{name}Page> {
         child: BlocBuilder<%{name}Cubit, %{name}State>(builder: (BuildContext context, state) {
           return Scaffold(
             body: Container(),
-            ),
           );
         }),
       ),
@@ -86,7 +85,7 @@ class %{name}Failure extends %{name}State {
 
 String screenTemplate = '''import 'package:flutter/material.dart';
 import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_cubit.dart';
-import 'package:tcap_myt/src/widgets/pages/%{nameSnake}/%{nameSnake}_page.dart';
+import 'package:tcap_myt/src/widgets/pages/%{nameSnake}_page.dart';
 
 class %{name}Screen extends StatefulWidget {
   const %{name}Screen({Key? key}) : super(key: key);
