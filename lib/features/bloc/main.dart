@@ -46,7 +46,7 @@ class BuildBloc {
     String content =
         page.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
-    saveDataToFile("lib/src/widgets/screens/${nameSnake}_page.dart", content);
+    saveDataToFile("lib/src/widgets/pages/${nameSnake}_page.dart", content);
   }
 
   void genCubitTemplate(
@@ -83,7 +83,7 @@ class BuildBloc {
 
     String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
 
-    saveDataToFile("$basePath/$nameSnake/${nameSnake}_state.dart", content);
+    saveDataToFile("$basePath/$nameSnake/${nameSnake}_router.dart", content);
   }
 
   void saveDataToFile(String path, String template) {
