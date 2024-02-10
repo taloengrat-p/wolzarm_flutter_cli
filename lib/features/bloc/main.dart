@@ -63,7 +63,8 @@ class BuildBloc {
       {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String state = stateTemplate;
 
-    String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
+    String content =
+        state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
     saveDataToFile("$basePath/$nameSnake/${nameSnake}_state.dart", content);
   }
@@ -72,7 +73,8 @@ class BuildBloc {
       {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String state = screenTemplate;
 
-    String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
+    String content =
+        state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
     saveDataToFile("$basePath/$nameSnake/${nameSnake}_screen.dart", content);
   }
@@ -81,7 +83,8 @@ class BuildBloc {
       {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String state = routerTemplate;
 
-    String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
+    String content =
+        state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
     saveDataToFile("$basePath/$nameSnake/${nameSnake}_router.dart", content);
   }
