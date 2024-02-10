@@ -94,10 +94,10 @@ class %{name}Screen extends StatefulWidget {
   const %{name}Screen({Key? key}) : super(key: key);
 
   @override
-  _%{name}ScreenState createState() => _%{name}ScreenState();
+  %{name}ScreenState createState() => %{name}ScreenState();
 }
 
-class _%{name}ScreenState extends State<%{name}Screen> {
+class %{name}ScreenState extends State<%{name}Screen> {
   %{name}Cubit cubit = %{name}Cubit();
 
   @override
