@@ -36,7 +36,7 @@ class BuildBloc {
     genStateTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
     genRouterTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
 
-    genPageTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
+    // genPageTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
   }
 
   void genPageTemplate(

@@ -82,9 +82,13 @@ class %{name}Failure extends %{name}State {
 }
 ''';
 
-String screenTemplate = '''import 'package:flutter/material.dart';
+String screenTemplate = '''import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_cubit.dart';
-import 'package:tcap_myt/src/widgets/pages/%{nameSnake}_page.dart';
+import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_state.dart';
+import 'package:tcap_myt/src/widgets/layouts/main_layout.dart'; 
 
 class %{name}Screen extends StatefulWidget {
   const %{name}Screen({Key? key}) : super(key: key);
@@ -104,7 +108,20 @@ class _%{name}ScreenState extends State<%{name}Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return %{name}Page(cubit);
+    return BlocProvider(
+      create: (BuildContext context) => cubit,
+      child: BlocListener<%{name}Cubit, %{name}State>(
+        listener: (context, state) {
+          log('Bloclistener: state: \$state', name: runtimeType.toString());
+        },
+        child: BlocBuilder<%{name}Cubit, %{name}State>(builder: (BuildContext context, state) {
+          return MainLayout(
+            title: Text('%{name}Screen'),
+            body: ListView(),
+          );
+        }),
+      ),
+    );
   }
 }
 ''';
