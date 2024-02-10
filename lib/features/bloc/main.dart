@@ -56,7 +56,7 @@ class BuildBloc {
     String content =
         cubit.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
-    saveDataToFile("$basePath$nameSnake/${nameSnake}_cubit.dart", content);
+    saveDataToFile("$basePath/$nameSnake/${nameSnake}_cubit.dart", content);
   }
 
   void genStateTemplate(
@@ -65,7 +65,7 @@ class BuildBloc {
 
     String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
 
-    saveDataToFile("$basePath$nameSnake/${nameSnake}_state.dart", content);
+    saveDataToFile("$basePath/$nameSnake/${nameSnake}_state.dart", content);
   }
 
   void genScreenTemplate(
@@ -74,7 +74,7 @@ class BuildBloc {
 
     String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
 
-    saveDataToFile("$basePath$nameSnake/${nameSnake}_screen.dart", content);
+    saveDataToFile("$basePath/$nameSnake/${nameSnake}_screen.dart", content);
   }
 
   void genRouterTemplate(
@@ -83,7 +83,7 @@ class BuildBloc {
 
     String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
 
-    saveDataToFile("$basePath$nameSnake/${nameSnake}_state.dart", content);
+    saveDataToFile("$basePath/$nameSnake/${nameSnake}_state.dart", content);
   }
 
   void saveDataToFile(String path, String template) {
