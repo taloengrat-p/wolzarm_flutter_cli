@@ -1,17 +1,8 @@
 import 'package:args/args.dart';
 import 'package:wolzarm_flutter_cli/features/bloc/main.dart';
 
-const softwarePackage = 'software-package';
-const displayImage = 'display-image';
-const fullSizeImage = 'full-size-image';
-const flavor = 'flavor';
-const bundleIdentifier = 'bundle-identifier';
-const bundleVersion = 'bundle-version';
-
 // const commandBuild = "build";
 const commandGenerate = "generate";
-
-const buildoverTheAirFlag = 'over-the-air';
 
 const generateBlocTemplatFlag = 'bloc-cubit';
 const generateResource = 'resource';
@@ -28,7 +19,7 @@ void main(List<String> args) {
 
   ArgResults argResults = parser.parse(args);
 
-  print('argResults; ${argResults.command?.name}, ${argResults[buildoverTheAirFlag]}');
+  print('argResults; ${argResults.command?.name}');
 
   switch (argResults.command?.name) {
     case commandGenerate:
