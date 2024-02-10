@@ -2,9 +2,8 @@ String pageTemplate = '''import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_cubit.dart';
-import 'package:tcap_myt/src/screens/%{nameSnake}_state.dart';
+import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_state.dart';
 
 class %{name}Page extends StatefulWidget {
   final %{name}Cubit cubit;
