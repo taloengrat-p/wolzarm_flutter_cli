@@ -27,43 +27,63 @@ class BuildBloc {
     final Map<String, dynamic> typedMap = yamlMap.cast<String, dynamic>();
 
     // Check if the YAML content was parsed successfully
-
-    // if (argResults[softwarePackage] == null || argResults[displayImage] == null || argResults[fullSizeImage] == null) {
-    //   throw ('please enter option $softwarePackage, $displayImage, $fullSizeImage');
-    // }
-
+    String basePath = argResults['output'];
     String package = '${typedMap['name']}';
     String nameSnakeCase = argResults[generateName];
     String nameCamelCase = Convertor.snakeToCamel(nameSnakeCase);
-    genPageTemplate(nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
-    genCubitTemplate(nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
-    genStateTemplate(nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
+    genScreenTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
+    genCubitTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
+    genStateTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
+    genRouterTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
+
+    genPageTemplate(basePath: basePath, nameSnake: nameSnakeCase, nameCamel: nameCamelCase, package: package);
   }
 
-  void genPageTemplate({required String nameSnake, required String nameCamel, required String package}) {
+  void genPageTemplate(
+      {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String page = pageTemplate;
 
     String content =
         page.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
-    saveDataToFile("lib/src/page/$nameSnake/${nameSnake}_page.dart", content);
+    saveDataToFile("lib/src/widgets/screens/${nameSnake}_page.dart", content);
   }
 
-  void genCubitTemplate({required String nameSnake, required String nameCamel, required String package}) {
+  void genCubitTemplate(
+      {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String cubit = cubitTemplate;
 
     String content =
         cubit.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
 
-    saveDataToFile("lib/src/page/$nameSnake/${nameSnake}_cubit.dart", content);
+    saveDataToFile("$basePath$nameSnake/${nameSnake}_cubit.dart", content);
   }
 
-  void genStateTemplate({required String nameSnake, required String nameCamel, required String package}) {
+  void genStateTemplate(
+      {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String state = stateTemplate;
 
     String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
 
-    saveDataToFile("lib/src/page/$nameSnake/${nameSnake}_state.dart", content);
+    saveDataToFile("$basePath$nameSnake/${nameSnake}_state.dart", content);
+  }
+
+  void genScreenTemplate(
+      {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
+    String state = screenTemplate;
+
+    String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
+
+    saveDataToFile("$basePath$nameSnake/${nameSnake}_screen.dart", content);
+  }
+
+  void genRouterTemplate(
+      {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
+    String state = routerTemplate;
+
+    String content = state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel);
+
+    saveDataToFile("$basePath$nameSnake/${nameSnake}_state.dart", content);
   }
 
   void saveDataToFile(String path, String template) {

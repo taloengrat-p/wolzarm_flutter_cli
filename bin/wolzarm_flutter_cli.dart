@@ -17,11 +17,11 @@ const generateBlocTemplatFlag = 'bloc-cubit';
 const generateResource = 'resource';
 
 const generateName = 'name';
-
+const optionOutputPath = 'output';
 void main(List<String> args) {
   final parser = ArgParser()
     ..addCommand(commandGenerate)
-    ..addOption('output', abbr: 'o')
+    ..addOption(optionOutputPath, abbr: 'o')
     ..addFlag(generateBlocTemplatFlag)
     ..addFlag(generateResource)
     ..addOption(generateName); // generate

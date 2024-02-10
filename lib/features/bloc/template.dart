@@ -1,43 +1,52 @@
-String pageTemplate = '''
-import 'package:%{package}/res/R.dart';
-import 'package:%{package}/src/page/%{nameSnake}/%{nameSnake}_cubit.dart';
-import 'package:%{package}/src/page/%{nameSnake}/%{nameSnake}_state.dart';   
-import 'package:aware_event/src/utils/utils.dart';
+String pageTemplate = '''import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_cubit.dart';
+import 'package:tcap_myt/src/screens/%{nameSnake/%{nameSnake}_state.dart';
 
 class %{name}Page extends StatefulWidget {
-  const %{name}Page({
+  final %{name}Cubit cubit;
+  const %{name}Page(
+    this.cubit, {
     Key? key,
   }) : super(key: key);
 
   @override
-  %{name}State createState() => %{name}State();
+  %{name}PageState createState() => %{name}PageState();
 }
 
-class %{name}State extends State<%{name}Page> {
-  late %{name}Cubit _cubit;
-
+class %{name}PageState extends State<%{name}Page> {
+  
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    _cubit = %{name}Cubit();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return %{name}Page();
+    return BlocProvider(
+      create: (BuildContext context) => widget.cubit,
+      child: BlocListener<%{name}Cubit, %{name}State>(
+        listener: (context, state) {
+          log('Bloclistener: state: \$state', name: runtimeType.toString());
+        },
+        child: BlocBuilder<%{name}Cubit, %{name}State>(builder: (BuildContext context, state) {
+          return Scaffold(
+            body: Container(),
+            ),
+          );
+        }),
+      ),
+    );
   }
 }
 ''';
 
 String cubitTemplate = '''
-import 'package:%{package}/src/page/%{nameSnake}/%{nameSnake}_state.dart';
+import 'package:%{package}/src/screens/%{nameSnake}/%{nameSnake}_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class %{name}Cubit extends Cubit<%{name}State> {
@@ -46,7 +55,6 @@ class %{name}Cubit extends Cubit<%{name}State> {
 ''';
 
 String stateTemplate = '''
-import 'package:%{package}/src/data/service/network_exceptions.dart';
 
 abstract class %{name}State {
   const %{name}State([List props = const []]) : super();
@@ -71,11 +79,62 @@ class %{name}Success extends %{name}State {
 }
 
 class %{name}Failure extends %{name}State {
-  final NetworkExceptions error;
-
-  const %{name}Failure(this.error);
-
   @override
   String toString() => '%{name}Failure';
+}
+''';
+
+String screenTemplate = '''import 'package:flutter/material.dart';
+import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_cubit.dart';
+import 'package:tcap_myt/src/widgets/pages/%{nameSnake}/%{nameSnake}_page.dart';
+
+class %{name}Screen extends StatefulWidget {
+  const %{name}Screen({Key? key}) : super(key: key);
+
+  @override
+  _%{name}ScreenState createState() => _%{name}ScreenState();
+}
+
+class _%{name}ScreenState extends State<%{name}Screen> {
+  %{name}Cubit cubit = %{name}Cubit();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return %{name}Page(cubit);
+  }
+}
+''';
+
+String routerTemplate = '''import 'package:flutter/material.dart';
+import 'package:%{package}/src/routes/base_router.dart';
+import 'package:%{package}/src/screens/%{nameSnake}/%{nameSnake}_screen.dart';
+
+class %{name}Router extends BaseRouter {
+  BuildContext context;
+
+  %{name}Router(this.context) : super(context, screen: %{name}Screen());
+
+  @override
+  Future navigate() {
+    return super.navigate();
+  }
+
+  @override
+  Future replace() {
+    // TODO: implement replace
+    return super.replace();
+  }
+
+  @override
+  void pop() {
+    // TODO: implement pop
+    super.pop();
+  }
 }
 ''';

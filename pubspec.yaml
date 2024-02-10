@@ -10,6 +10,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   args: any
+  yaml: any
   # path: ^1.8.0
 
 dev_dependencies:
