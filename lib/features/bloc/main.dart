@@ -8,8 +8,6 @@ import 'package:yaml/yaml.dart';
 const generateName = 'name';
 
 class BuildBloc {
-  BuildBloc() {}
-
   void build(ArgResults argResults) {
     // Read the content of the YAML file
     final File yamlFile = File('pubspec.yaml');

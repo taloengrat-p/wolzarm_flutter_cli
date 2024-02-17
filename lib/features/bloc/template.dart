@@ -88,7 +88,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_cubit.dart';
 import 'package:tcap_myt/src/screens/%{nameSnake}/%{nameSnake}_state.dart';
-import 'package:tcap_myt/src/widgets/layouts/main_layout.dart'; 
 
 class %{name}Screen extends StatefulWidget {
   const %{name}Screen({Key? key}) : super(key: key);
@@ -115,8 +114,8 @@ class %{name}ScreenState extends State<%{name}Screen> {
           log('Bloclistener: state: \$state', name: runtimeType.toString());
         },
         child: BlocBuilder<%{name}Cubit, %{name}State>(builder: (BuildContext context, state) {
-          return MainLayout(
-            title: Text('%{name}Screen'),
+          return Scaffold(
+            appBar: AppBar(title: Text('%{name}Screen')),
             body: ListView(),
           );
         }),
@@ -131,25 +130,10 @@ import 'package:%{package}/src/routes/base_router.dart';
 import 'package:%{package}/src/screens/%{nameSnake}/%{nameSnake}_screen.dart';
 
 class %{name}Router extends BaseRouter {
-  BuildContext context;
+ 
 
-  %{name}Router(this.context) : super(context, screen: %{name}Screen());
+  %{name}Router(BuildContext context) : super(context, name: %{nameCamel}ScreenUrl);
 
-  @override
-  Future navigate() {
-    return super.navigate();
-  }
-
-  @override
-  Future replace() {
-    // TODO: implement replace
-    return super.replace();
-  }
-
-  @override
-  void pop() {
-    // TODO: implement pop
-    super.pop();
-  }
+   
 }
 ''';
