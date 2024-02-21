@@ -81,8 +81,14 @@ class BuildBloc {
       {required String basePath, required String nameSnake, required String nameCamel, required String package}) {
     String state = routerTemplate;
 
-    String content =
-        state.replaceAll('%{package}', package).replaceAll('%{name}', nameCamel).replaceAll("%{nameSnake}", nameSnake);
+    String content = state
+        .replaceAll('%{package}', package)
+        .replaceAll('%{name}', nameCamel)
+        .replaceAll(
+          "%{nameSnake}",
+          nameSnake,
+        )
+        .replaceAll('%{nameCamel}', nameCamel);
 
     saveDataToFile("$basePath/$nameSnake/${nameSnake}_router.dart", content);
   }
